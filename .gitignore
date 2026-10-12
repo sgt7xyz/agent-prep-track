@@ -1,0 +1,28 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.next/
+.vercel/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# OS and editor
+.DS_Store
+.idea/
+.vscode/
