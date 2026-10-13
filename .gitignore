@@ -29,3 +29,7 @@ pnpm-debug.log*
 
 .secrets
 *.secrets
+
+# Licensed reference material (CIS terms forbid redistributing the benchmark)
+*.pdf
+references/
