@@ -20,13 +20,13 @@ The track starts **Tuesday, October 13** (Mon Oct 12 is a reset day).
 
 If a day slips, protect sessions 10, 14 and 20 first; drop 18 and 17 before anything else.
 
-## Through-line project: Cloud Posture Brief
+## Through-line project: Posture Brief Lite
 
-One project carries all 21 sessions. It takes a set of cloud misconfiguration findings and returns a prioritized remediation brief for a non-technical owner. Each finding is mapped to a CIS benchmark item and a NIST 800-53 control family, with an effort estimate and a suggested fix.
+A small Python CLI. It reads a JSON file of cloud misconfiguration findings, maps each one to a CIS benchmark item and a NIST 800-53 control family, orders them by severity, and uses one LLM call to write a plain-English summary for a non-technical owner. Output is a markdown brief, also rendered as a static page.
 
 - **Deterministic parts:** control ID mapping, severity math
-- **Probabilistic parts:** prose, prioritization, explanation
-- **Pieces:** web front end, an agent, and an MCP server exposing the control catalog and finding store as tools
+- **Probabilistic part:** the owner-facing prose
+- **How it grows:** hand-built agent harness (Session 10), MCP server (14), eval suite (18), threat model (20)
 
 ## Repository layout
 

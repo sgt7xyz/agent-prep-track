@@ -140,14 +140,22 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
   <ul>
     <li><strong>21 sessions, the full track, nothing trimmed</strong>, about 33.5 hours, scheduled into a fixed daily block of roughly 6 hours of ATO and 2 hours of Verily, Monday through Friday, with the rest on Saturday.</li>
     <li>Every session ends in a <strong>deliverable committed to one repo</strong>. No passive reading sessions.</li>
-    <li>One <strong>through line project</strong> carries all 21 sessions, so by October 19 you have a deployed app, a working MCP server, an eval suite and a threat model on the same codebase.</li>
+    <li>One <strong>through line project</strong> carries all 21 sessions, so by October 19 you have a working CLI, a small deployed brief page, an MCP server, an eval suite and a threat model on the same codebase.</li>
     <li>Progress is saved in this browser. Check boxes as you go, take notes in each session, come back to it.</li>
   </ul>
 
   <h2>The through line project</h2>
   <p>Pick one and keep it for all 21 sessions. The workshop prerequisites ask you to bring an idea, and small and real beats big and vague. The recommended one, because it uses what you already know and doubles as an sgt7 portfolio piece:</p>
-  <div class="deliv"><b>Cloud Posture Brief.</b> Feed it a set of cloud misconfiguration findings. It returns a prioritized remediation brief for a non technical owner, with each finding mapped to the CIS benchmark item and the NIST 800-53 control family it touches, plus an effort estimate and a suggested fix. A web front end for the brief, an agent behind it, an MCP server exposing the control catalog and finding store as tools.</div>
-  <p>It works for this track because it needs real tools (not a chatbot), it has parts that must be deterministic (control ID mapping, severity math) and parts that are legitimately probabilistic (prose, prioritization, explanation), and it is a thing a small business would actually pay for.</p>
+  <div class="deliv"><b>Posture Brief Lite.</b> A small Python CLI. Feed it a JSON file of cloud misconfiguration findings. Deterministic code maps each finding to a CIS benchmark item and a NIST 800-53 control family and computes severity order. One LLM call writes a plain English summary for a non technical owner. Output is a markdown brief, also rendered as a static page. No web framework, no MCP server and no agent loop at the start: those arrive in later sessions.</div>
+  <p>How Lite grows, so nothing is thrown away:</p>
+  <ul>
+    <li><strong>Sessions 1 to 8:</strong> CLI, control lookup table, severity math, one LLM call, static page on Vercel.</li>
+    <li><strong>Session 10:</strong> the single LLM call becomes a hand built agent harness.</li>
+    <li><strong>Session 14:</strong> the lookup table and findings file are exposed as an MCP server.</li>
+    <li><strong>Session 18:</strong> an eval suite over a golden set of findings files.</li>
+    <li><strong>Session 20:</strong> a threat model for the finished tool.</li>
+  </ul>
+  <p>It works for this track because it is small enough to finish, it has parts that must be deterministic (control ID mapping, severity math) and a part that is legitimately probabilistic (the owner facing prose), and it can grow into real tools, an MCP server and evals. The full version of the idea, a web front end with an agent and MCP server behind it, is where Lite ends up if time allows.</p>
 
   <h2>This week at a glance</h2>
   <p>Start moved to Tuesday Oct 13. Same track, same order, one day later. Eight hours a day, Tuesday to Friday, then a longer weekend. ATO gets the larger block because the full 33.5 hour track only fits that way. Verily gets two protected hours every weekday, plus two full days after the workshop.</p>
@@ -156,7 +164,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
     <tr><th>Day</th><th>ATO sessions</th><th>ATO time</th><th>Verily</th></tr>
     <tr><td>Mon Oct 12</td><td>Reset day. Nothing scheduled.</td><td>none</td><td>none</td></tr>
     <tr><td>Tue Oct 13</td><td>1 to 5: setup, project spec, baseline, PR gate, agent review</td><td>5h 45m</td><td>2h, vitals-platform repo</td></tr>
-    <tr><td>Wed Oct 14</td><td>6 to 8: v0 and Vercel, specs, ship v1</td><td>5h 30m</td><td>2h, vitals-platform repo</td></tr>
+    <tr><td>Wed Oct 14</td><td>6 to 8: static deploy on Vercel, specs, ship v1</td><td>5h 30m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Thu Oct 15</td><td>9 to 12: determinism, harness, context, memory</td><td>6h 00m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Fri Oct 16</td><td>13 to 15: MCP brief, MCP server, skills</td><td>5h 15m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Sat Oct 17</td><td>16 to 18: A2A, patterns, evals</td><td>5h 30m</td><td>none</td></tr>
@@ -190,7 +198,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
     <tr><td>Source control for the agent era, why agents need Git more than humans do</td><td>Sessions 4, 5</td><td>Focused on the audit trail and diff reading discipline, not on Git basics.</td></tr>
     <tr><td>Hands on: GitHub account and first repository</td><td>Session 1</td><td>Fifteen minutes of setup rather than a morning block.</td></tr>
     <tr><td>Hands on: connect Vercel to GitHub, deploy to a live URL</td><td>Session 6</td><td>Same exercise, plus per PR preview deployments as the real feedback loop.</td></tr>
-    <tr><td>Vibe coding with v0: plain English to a working app</td><td>Sessions 6, 8</td><td>Same, with the spec written first so you can tell whether the output was right.</td></tr>
+    <tr><td>Vibe coding with v0: plain English to a working app</td><td>Sessions 6, 8</td><td>Smaller: a CLI plus a static page. v0 is an optional stretch in Session 6. The spec still comes first so you can tell whether the output was right.</td></tr>
     <tr><td>The agent development loop: prompt, generate, commit, review, deploy, repeat</td><td>Sessions 7, 8</td><td>Same loop, then Session 10 has you build the underlying agent loop yourself.</td></tr>
     <tr><td>Reading what the agent wrote: diffs, PRs, knowing when to say no</td><td>Session 5</td><td>With a risk ordered review checklist instead of line by line reading.</td></tr>
     <tr><td>Hands on: build and ship your own project end to end</td><td>Session 8</td><td>Same, and it becomes the substrate for the other sixteen sessions.</td></tr>
@@ -233,7 +241,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
   <p>You will be asked what you are working on, by the instructor or by the person next to you. Have this ready and rehearsed, it is the single highest return thing you can prepare. Structure:</p>
   <ol>
     <li>Who you are in one line. Founder of sgt7, cloud security and DevSecOps for small and mid sized businesses in the Triangle, Army veteran, AWS and GCP background.</li>
-    <li>What you built. The Cloud Posture Brief, what it does, the fact that it has an MCP server and an eval suite behind it.</li>
+    <li>What you built. Posture Brief Lite, what it does, the fact that it grew an MCP server and an eval suite behind it.</li>
     <li>The specific thing you are stuck on or unsure about. This is the hook. People answer a concrete problem, they do not answer "tell me about agents."</li>
   </ol>
   <p>Write it here, then say it out loud three times.</p>
@@ -280,11 +288,12 @@ const SESSIONS = [
 {ph:null,id:2,title:"Pick the through line project and write the spec",when:"Tue Oct 13",mins:60,
  goal:"One problem statement that will carry all 21 sessions, written down before any code exists.",
  why:"Both workshops ask you to bring a real problem. The difference between people who leave with something and people who leave with notes is whether they decided what they were building before they arrived.",
- steps:["Write docs/PROJECT.md: the problem, who has it, the single screen that solves it, three success criteria, and an explicit non goals list.",
+ steps:["Write docs/PROJECT.md: the problem, who has it, the single command that solves it, three success criteria, and an explicit non goals list.",
   "Non goals matter more than goals when an agent is writing the code. It is the fence.",
   "Write AGENTS.md at the repo root. This is durable context every agent session reads, so you stop retyping constraints.",
-  "Keep the scope brutally small. One screen, one workflow, real data shape."],
- code:{t:"markdown",v:"# AGENTS.md\n\n## Stack\nNext.js app router, TypeScript, Tailwind. Python 3.12 with uv for the agent and MCP server.\n\n## Rules\n- Never add a dependency without saying why in the PR description.\n- Never touch files under infra/ or .github/ unless the task says so.\n- Every change ships with a test or a documented manual verification step.\n- Control ID mapping and severity math are deterministic code, never model output.\n- No secrets in code. Read from env. List any new env var in the PR body.\n\n## Definition of done\nBuild passes, lint passes, evals pass, preview deploy renders the changed screen."},
+  "Keep the scope brutally small. One command, one workflow, a real data shape.",
+  "Write data/findings.sample.json: five invented findings (id, title, severity, resource, control_id). Invented only, never real client data."],
+ code:{t:"markdown",v:"# AGENTS.md\n\n## Stack\nPython 3.12 with uv. Plain CLI first. Static HTML for the published page. Agent harness and MCP server come in later sessions.\n\n## Rules\n- Never add a dependency without saying why in the PR description.\n- Never touch files under infra/ or .github/ unless the task says so.\n- Every change ships with a test or a documented manual verification step.\n- Control ID mapping and severity math are deterministic code, never model output.\n- No secrets in code. Read from env. List any new env var in the PR body.\n\n## Definition of done\nLint passes, tests pass, evals pass, the CLI runs on data/findings.sample.json, preview deploy renders the changed brief."},
  deliv:"docs/PROJECT.md and AGENTS.md committed. You can state the project in one sentence without hedging.",
  commit:"docs: define project scope and agent operating rules"},
 
@@ -321,21 +330,22 @@ const SESSIONS = [
   "Review the PR using the ordering. Find at least one thing you would push back on. There will be one.",
   "Request the change, let the agent fix it, merge.",
   "Add a CI workflow so the gate is real and not just your attention."],
- code:{t:"yaml",v:"# .github/workflows/ci.yml\nname: ci\non:\n  pull_request:\n  push:\n    branches: [main]\njobs:\n  check:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: npm\n      - run: npm ci\n      - run: npm run lint\n      - run: npm run build\n      - run: npm test --if-present"},
+ code:{t:"yaml",v:"# .github/workflows/ci.yml\nname: ci\non:\n  pull_request:\n  push:\n    branches: [main]\njobs:\n  check:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: astral-sh/setup-uv@v5\n      - run: uv python install 3.12\n      - run: uv sync\n      - run: uv run ruff check .\n      - run: uv run pytest"},
  deliv:"One merged PR authored by an agent that carries a real review comment and a follow up commit. CI green on main.",
  commit:"ci: add lint, build and test gate"},
 
-{ph:null,id:6,title:"v0 and Vercel: the deploy layer",when:"Wed Oct 14",mins:75,
- goal:"A live URL, and a preview deployment on every pull request.",
- why:"This is the half of the vibe coding workshop that is genuinely new to most infrastructure people. The point is not that Vercel is special, it is that a per PR preview URL turns code review into looking at the thing.",
- steps:["Connect Vercel to the GitHub repo and import it. Production deploys from main, previews from every PR, automatically.",
-  "Generate the front end in v0 from a written prompt, not a vibe. Describe the data shape, the states including empty and error, and the constraints.",
-  "Push it into the repo through a PR and click the preview URL on that PR.",
-  "Set environment variables in Vercel for preview and production separately. Notice that this is the first place secrets management enters the loop.",
-  "Deliberately break the build once and watch the gate stop it. Knowing what failure looks like is worth the five minutes."],
- code:{t:"text",v:"v0 prompt template\n\nBuild a single page for [name]. \nData: an array of findings, each with id, title, severity (critical|high|medium|low), \n  resource, control_id, status (open|accepted|fixed).\nLayout: header with counts by severity, filterable table, detail drawer on row click.\nStates: loading skeleton, empty state with copy, error state with retry.\nConstraints: TypeScript, Tailwind, no component library beyond what ships with the template,\n  no data fetching, accept data as props, no invented fields.\nAccessibility: keyboard navigable table, visible focus, labelled controls."},
- deliv:"Live production URL, and a PR whose preview URL renders the new screen.",
- commit:"feat: initial findings dashboard generated from spec"},
+{ph:null,id:6,title:"Publish the brief: Vercel static deploy",when:"Wed Oct 14",mins:75,
+ goal:"A live URL for the brief, and a preview deployment on every pull request.",
+ why:"This is the half of the vibe coding workshop that is genuinely new to most infrastructure people. The point is not that Vercel is special, it is that a per PR preview URL turns code review into looking at the thing. A static page keeps the lesson and drops the framework.",
+ steps:["Add a render step to the CLI that writes the brief to site/index.html. Plain HTML and CSS, no framework, no build step.",
+  "Connect Vercel to the GitHub repo and import it. Set the output directory to site. Production deploys from main, previews from every PR, automatically.",
+  "Push the render step through a PR and click the preview URL on that PR.",
+  "Publish sample data only. A public deploy is public: real client findings never go in it. Note that a static page also means there is no API key on Vercel to leak, because the brief is generated before deploy.",
+  "Optional stretch: have v0 generate a nicer page from a written prompt that states the data shape and the empty and error states. Skip it if time is short.",
+  "Deliberately break the render step once and watch CI stop it. Knowing what failure looks like is worth the five minutes."],
+ code:{t:"text",v:"Static page spec (usable as a v0 prompt too)\n\nBuild a single static page for Posture Brief Lite.\nData: findings, each with id, title, severity (critical|high|medium|low),\n  resource, control_id, cis_item, nist_family.\nLayout: plain English summary on top, counts by severity, then findings sorted by severity.\nStates: empty state with copy when there are no findings.\nConstraints: plain HTML and CSS, no JavaScript framework, no invented fields.\nAccessibility: semantic headings, readable contrast, works at phone width."},
+ deliv:"Live production URL, and a PR whose preview URL renders the brief from sample data.",
+ commit:"feat: render brief as static page and deploy to Vercel"},
 
 {ph:null,id:7,title:"Specification over syntax",when:"Wed Oct 14",mins:75,
  goal:"Three reusable prompt templates and a hardened AGENTS.md, so agent output stops being a lottery.",
@@ -349,16 +359,16 @@ const SESSIONS = [
  deliv:"docs/PROMPTS.md committed, AGENTS.md updated, and two PRs side by side showing the difference a spec makes.",
  commit:"docs: reusable agent prompt templates"},
 
-{ph:null,id:8,title:"Ship v1 end to end",when:"Wed Oct 14",mins:180,
+{ph:null,id:8,title:"Ship Lite v1 end to end",when:"Wed Oct 14",mins:180,
  goal:"A working, deployed application built entirely through the loop, with the whole history in pull requests.",
  why:"This is the deliverable the vibe coding workshop promises: a working deployed application, a repository documenting every change the agents made, and a repeatable process. You want it done before October 19 so the advanced room is not the first time you have run the loop.",
- steps:["Work in vertical slices. One PR per user visible behavior, each one deployed and clicked before the next starts.",
+ steps:["Work in vertical slices. One PR per behavior: load and validate findings, map controls, order by severity, render the markdown brief, render the static page. Each one is run before the next starts.",
   "Keep the deterministic parts in plain code from the start: control ID lookup, severity ordering, counts. Do not let the model compute anything that must be exact.",
-  "Stub the agent for now. A hard coded brief generator is fine, Phase 2 replaces it.",
-  "Finish with a README that has a screenshot, the live URL, and a short architecture note.",
+  "Add the one LLM call: it writes only the owner facing summary, from facts your code already computed. Keep a template fallback so the tool still runs with no API key. Phase 2 replaces this call with a harness.",
+  "Finish with a README that has sample output, the live URL, and a short architecture note.",
   "Stop when it works. The temptation to keep adding is how these projects die."],
  code:null,
- deliv:"Live application, minimum four merged PRs, README with screenshot and architecture note. You have now covered the vibe coding workshop.",
+ deliv:"Working CLI plus the live brief page, minimum four merged PRs, README with sample output and architecture note. You have now covered the vibe coding workshop.",
  commit:"feat: v1 shipped"},
 
 /* PHASE 2 */
@@ -503,7 +513,7 @@ const SESSIONS = [
  goal:"A threat model for your own agent, with mitigations mapped to controls you already know.",
  why:"This is your home ground and the place where you can contribute to the room rather than only absorb. Agent security has no clean precedent, but workload identity and least privilege absolutely do, and you have been doing both for years.",
  steps:["The core class is prompt injection. Anything an agent reads is untrusted input: tool output, a web page, a file in a repo, a ticket description, a finding field. Data is never instructions. Your harness must enforce that boundary because the model will not reliably do it for you.",
-  "Memorize the lethal trifecta, because it is the cleanest risk test there is: access to private data, exposure to untrusted content, and the ability to communicate externally. Any two are survivable. All three in one agent is an exfiltration path, and your Cloud Posture Brief has all three by default unless you cut one.",
+  "Memorize the lethal trifecta, because it is the cleanest risk test there is: access to private data, exposure to untrusted content, and the ability to communicate externally. Any two are survivable. All three in one agent is an exfiltration path, and Posture Brief Lite will have all three once it reads findings, drafts prose and can call out, unless you cut one.",
   "Identity. An agent must not run as you. Give it a workload identity: OIDC federation to a role, short lived credentials, scopes per tool rather than per agent, and an audit trail that names both the agent and the human who invoked it. This is exactly the IAM reasoning you already apply, pointed at a non deterministic caller.",
   "Supply chain. An MCP server is code you run and a skill is instructions you follow. Pin versions, read the source, prefer servers you host, and watch for tool descriptions that change after install. There were real incidents in 2026 driven by locally run servers and over trusted tool metadata, so this is not theoretical.",
   "Write the threat model. Map each mitigation to the NIST 800-53 families you already use, AC, AU, CM, IA, SC, SI. That mapping is what turns this into an sgt7 deliverable rather than a hobby document."],
