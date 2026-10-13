@@ -116,7 +116,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
     <div class="stat"><div class="n" id="daysLeft">-</div><div class="l">days to Oct 19</div></div>
     <div class="stat"><div class="n" id="doneCount">0 / 21</div><div class="l">sessions done</div></div>
     <div class="stat"><div class="n" id="hoursLeft">-</div><div class="l">est. ATO hours remaining</div></div>
-    <div class="stat"><div class="n">8 + 16</div><div class="l">Verily hrs: this week + Oct 21 to 22</div></div>
+    <div class="stat"><div class="n">6 + 16</div><div class="l">Verily hrs: this week + Oct 21 to 22</div></div>
   </div>
   <div class="bar"><i id="barFill"></i></div>
 </div>
@@ -163,8 +163,8 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
   <table>
     <tr><th>Day</th><th>ATO sessions</th><th>ATO time</th><th>Verily</th></tr>
     <tr><td>Mon Oct 12</td><td>Reset day. Nothing scheduled.</td><td>none</td><td>none</td></tr>
-    <tr><td>Tue Oct 13</td><td>1 to 5: setup, project spec, baseline, PR gate, agent review</td><td>5h 45m</td><td>2h, vitals-platform repo</td></tr>
-    <tr><td>Wed Oct 14</td><td>6 to 8: static deploy on Vercel, specs, ship v1</td><td>5h 30m</td><td>2h, vitals-platform repo</td></tr>
+    <tr><td>Tue Oct 13</td><td>1 to 3: setup, project spec, baseline. Session 4 if time allows tonight</td><td>3h 30m</td><td>2h, vitals-platform repo</td></tr>
+    <tr><td>Wed Oct 14</td><td>4 to 8: PR gate, agent review, static deploy on Vercel, specs, ship v1</td><td>7h 45m</td><td>none, skipped to protect the ATO block</td></tr>
     <tr><td>Thu Oct 15</td><td>9 to 12: determinism, harness, context, memory</td><td>6h 00m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Fri Oct 16</td><td>13 to 15: MCP brief, MCP server, skills</td><td>5h 15m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Sat Oct 17</td><td>16 to 18: A2A, patterns, evals</td><td>5h 30m</td><td>none</td></tr>
@@ -175,9 +175,9 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
     <tr><td>Fri Oct 23</td><td colspan="2">Interview availability opens</td><td></td></tr>
   </table>
   </div>
-  <p>Verily total before the first possible interview: about 8 hours this week plus 16 hours on Oct 21 and 22, roughly 24 hours.</p>
+  <p>Verily total before the first possible interview: about 6 hours this week (the Wednesday block is skipped) plus 16 hours on Oct 21 and 22, roughly 22 hours.</p>
 
-  <div class="note"><strong>Where this will bend.</strong> The one day slip used up the buffer. Sunday Oct 18 is now a full ATO day with no light day before the workshop, so the real pressure point is finishing Session 21 and your intro by early evening and sleeping before a 7:30 am doors open. Tuesday is the lightest on hard content, so if anything runs over, it runs over there. Thursday is the heaviest ATO day because Session 10 (the hand built harness, 2 hours) is the most valuable session in the track and should not be split. If a day slips again, the order to protect on the ATO side is 10, 14, 20, then drop 18 and 17 before touching anything else. Verily is the one with a hard date, so do not borrow its 2 hours without deciding to.</div>
+  <div class="note"><strong>Where this will bend.</strong> The one day slip used up the buffer. Sunday Oct 18 is now a full ATO day with no light day before the workshop, so the real pressure point is finishing Session 21 and your intro by early evening and sleeping before a 7:30 am doors open. Tuesday is the lightest on hard content, so if anything runs over, it runs over there. Thursday is the heaviest ATO day because Session 10 (the hand built harness, 2 hours) is the most valuable session in the track and should not be split. If a day slips again, the order to protect on the ATO side is 10, 14, 20, then drop 18 and 17 before touching anything else. Verily is the one with a hard date, so do not borrow its 2 hours without deciding to. <strong>Update, Oct 13.</strong> Sessions 4 and 5 moved to Wednesday and the Wednesday Verily block is skipped, so Wednesday is now the heavy day at about 7h 45m. If it runs over, let Session 8 spill into Thursday morning and do not touch Session 10.</div>
 </section>
 
 <section class="panel" id="p-sessions">
@@ -310,7 +310,7 @@ const SESSIONS = [
 
 /* PHASE 1 */
 {ph:"Phase 1: The build loop",phd:"Five sessions. This is the AI Agents and Vibe Coding workshop, compressed, ending with a deployed application.",
- id:4,title:"The development loop, agent edition",when:"Tue Oct 13",mins:60,
+ id:4,title:"The development loop, agent edition",when:"Wed Oct 14",mins:60,
  goal:"Turn the repo into something an agent can work in safely, with the pull request as the human checkpoint.",
  why:"Mark's framing is that the pull request is where a human stays in charge. That is not a Git lesson, it is a control design lesson, and it is the same instinct you use for change management in a regulated environment.",
  steps:["Protect main: require a pull request, require the status check, no direct pushes, squash merges only.",
@@ -322,7 +322,7 @@ const SESSIONS = [
  deliv:"Branch protection on, CODEOWNERS and PR template committed, one test PR opened and merged through the gate.",
  commit:"ci: require reviewed pull requests and add agent aware PR template"},
 
-{ph:null,id:5,title:"GitHub as the agent's system of record",when:"Tue Oct 13",mins:75,
+{ph:null,id:5,title:"GitHub as the agent's system of record",when:"Wed Oct 14",mins:75,
  goal:"A repeatable way to review a diff you did not write, fast, without reading every line.",
  why:"Agents produce more code than you can read. Reviewing everything equally is how people end up rubber stamping. You need an ordering.",
  steps:["Learn the risk ordering. Look in this sequence: dependency and lockfile changes, anything touching auth, secrets or permissions, new outbound network calls, deleted or weakened tests, schema and migration changes, then everything else.",
@@ -614,8 +614,8 @@ document.getElementById("themeBtn").onclick = ()=>{
 /* ---------- render sessions ---------- */
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const DAYS = {
- 1:{d:"Tue Oct 13",ato:"5h 45m",v:"Verily 2h",note:"Sessions 1 to 5. Lightest on hard content, so this is the day with room to slip."},
- 6:{d:"Wed Oct 14",ato:"5h 30m",v:"Verily 2h",note:"Sessions 6 to 8. Session 8 is a 3 hour ship block, keep it in one piece."},
+ 1:{d:"Tue Oct 13",ato:"3h 30m",v:"Verily 2h",note:"Sessions 1 to 3. Session 4 moved to Wednesday. If you have an hour tonight, do Session 4 now, it is mostly GitHub settings and takes an hour off Wednesday."},
+ 4:{d:"Wed Oct 14",ato:"7h 45m",v:null,note:"Sessions 4 to 8. Verily block skipped on purpose to protect this day. Do Session 5 first while fresh. Session 8 is a 3 hour ship block, keep it in one piece."},
  9:{d:"Thu Oct 15",ato:"6h 00m",v:"Verily 2h",note:"Sessions 9 to 12. Heaviest day. Session 10 is the most valuable in the track, do not split it."},
  13:{d:"Fri Oct 16",ato:"5h 15m",v:"Verily 2h",note:"Sessions 13 to 15. MCP day. Session 14 is a 2.5 hour build."},
  16:{d:"Sat Oct 17",ato:"5h 30m",v:null,note:"Sessions 16 to 18. No Verily block. Evals today, the artifact you most want to be able to show."},
