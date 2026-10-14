@@ -8,15 +8,15 @@ Every session ends with a deliverable committed to this repo.
 
 The track starts **Tuesday, October 13** (Mon Oct 12 is a reset day).
 
-| Day | Sessions | Focus |
-|---|---|---|
-| Tue Oct 13 | 1–3 | Setup, project spec, baseline |
-| Wed Oct 14 | 4–8 | PR gate, agent review, static deploy on Vercel, specs, API warm-up, ship v1 |
-| Thu Oct 15 | 9–12 | Determinism, hand-built harness (Session 10), context, memory |
-| Fri Oct 16 | 13–15 | MCP brief, MCP server, skills |
-| Sat Oct 17 | 16–18 | A2A, agent patterns, evals |
-| Sun Oct 18 | 19–21 | Observability, security, sovereignty; intro, questions, day-of kit |
-| Mon Oct 19 | | All Things Open workshop |
+| Day        | Sessions | Focus                                                                       |
+| ---------- | -------- | --------------------------------------------------------------------------- |
+| Tue Oct 13 | 1–3      | Setup, project spec, baseline                                               |
+| Wed Oct 14 | 4–8      | PR gate, agent review, static deploy on Vercel, specs, API warm-up, ship v1 |
+| Thu Oct 15 | 9–12     | Determinism, hand-built harness (Session 10), context, memory               |
+| Fri Oct 16 | 13–15    | MCP brief, MCP server, skills                                               |
+| Sat Oct 17 | 16–18    | A2A, agent patterns, evals                                                  |
+| Sun Oct 18 | 19–21    | Observability, security, sovereignty; intro, questions, day-of kit          |
+| Mon Oct 19 |          | All Things Open workshop                                                    |
 
 If a day slips, protect sessions 10, 14 and 20 first; drop 18 and 17 before anything else.
 
@@ -30,14 +30,14 @@ A small Python CLI. It reads a JSON file of cloud misconfiguration findings, map
 
 ## Repository layout
 
-| Path | Purpose |
-|---|---|
-| [docs/](docs/) | The course plan ([Agent Prep Track_ ATO 2026.html](<docs/Agent Prep Track_ ATO 2026.html>)); open it in a browser |
-| [agent/](agent/) | The agent behind the brief |
-| [mcp/](mcp/) | MCP server (control catalog, finding store) |
-| [skills/](skills/) | Agent skills |
-| [evals/](evals/) | Eval suite |
-| [notes/](notes/) | Session notes |
+| Path               | Purpose                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| [docs/](docs/)     | The course plan ([Agent Prep Track\_ ATO 2026.html](<docs/Agent Prep Track_ ATO 2026.html>)); open it in a browser |
+| [agent/](agent/)   | The agent behind the brief                                                                                         |
+| [mcp/](mcp/)       | MCP server (control catalog, finding store)                                                                        |
+| [skills/](skills/) | Agent skills                                                                                                       |
+| [evals/](evals/)   | Eval suite                                                                                                         |
+| [notes/](notes/)   | Session notes                                                                                                      |
 
 ## Setup
 
@@ -58,3 +58,5 @@ python --version
 ## Progress
 
 Progress and notes for the course plan are stored in the browser that opens `docs/Agent Prep Track_ ATO 2026.html`.
+
+## Rocking AI Agents Prep!
