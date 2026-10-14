@@ -60,4 +60,3 @@ python --version
 Progress and notes for the course plan are stored in the browser that opens `docs/Agent Prep Track_ ATO 2026.html`.
 
 ## Progress
-
