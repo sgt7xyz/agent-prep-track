@@ -1,6 +1,6 @@
 # Agent Prep Track: ATO 2026
 
-A 21-session self-study track (about 33.5 hours) in preparation for **AI Agents in Production** (Don Shin) at ATO 2026, Monday, October 19, Raleigh Convention Center. It compresses the foundations of the AI Agents & Vibe Coding workshop (Mark Hinkle) into five sessions, then spends the remaining sixteen on the production syllabus: agent harnesses, context engineering, MCP and A2A, skills, memory, agent patterns, evals, security, sovereignty, tokenomics and ethics.
+A 21-session self-study track (about 34 hours) in preparation for **AI Agents in Production** (Don Shin) at ATO 2026, Monday, October 19, Raleigh Convention Center. It compresses the foundations of the AI Agents & Vibe Coding workshop (Mark Hinkle) into five sessions, then spends the remaining sixteen on the production syllabus: agent harnesses, context engineering, MCP and A2A, skills, memory, agent patterns, evals, security, sovereignty, tokenomics and ethics.
 
 Every session ends with a deliverable committed to this repo.
 
@@ -10,8 +10,8 @@ The track starts **Tuesday, October 13** (Mon Oct 12 is a reset day).
 
 | Day | Sessions | Focus |
 |---|---|---|
-| Tue Oct 13 | 1–5 | Setup, project spec, baseline, PR gate, agent review |
-| Wed Oct 14 | 6–8 | v0 and Vercel, specs, ship v1 |
+| Tue Oct 13 | 1–3 | Setup, project spec, baseline |
+| Wed Oct 14 | 4–8 | PR gate, agent review, static deploy on Vercel, specs, API warm-up, ship v1 |
 | Thu Oct 15 | 9–12 | Determinism, hand-built harness (Session 10), context, memory |
 | Fri Oct 16 | 13–15 | MCP brief, MCP server, skills |
 | Sat Oct 17 | 16–18 | A2A, agent patterns, evals |

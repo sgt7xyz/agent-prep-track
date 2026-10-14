@@ -138,7 +138,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
 
   <h2>How it is built</h2>
   <ul>
-    <li><strong>21 sessions, the full track, nothing trimmed</strong>, about 33.5 hours, scheduled into a fixed daily block of roughly 6 hours of ATO and 2 hours of Verily, Monday through Friday, with the rest on Saturday.</li>
+    <li><strong>21 sessions, the full track, nothing trimmed</strong>, about 34 hours, scheduled into a fixed daily block of roughly 6 hours of ATO and 2 hours of Verily, Monday through Friday, with the rest on Saturday.</li>
     <li>Every session ends in a <strong>deliverable committed to one repo</strong>. No passive reading sessions.</li>
     <li>One <strong>through line project</strong> carries all 21 sessions, so by October 19 you have a working CLI, a small deployed brief page, an MCP server, an eval suite and a threat model on the same codebase.</li>
     <li>Progress is saved in this browser. Check boxes as you go, take notes in each session, come back to it.</li>
@@ -164,7 +164,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
     <tr><th>Day</th><th>ATO sessions</th><th>ATO time</th><th>Verily</th></tr>
     <tr><td>Mon Oct 12</td><td>Reset day. Nothing scheduled.</td><td>none</td><td>none</td></tr>
     <tr><td>Tue Oct 13</td><td>1 to 3: setup, project spec, baseline. Session 4 if time allows tonight</td><td>3h 30m</td><td>2h, vitals-platform repo</td></tr>
-    <tr><td>Wed Oct 14</td><td>4 to 8: PR gate, agent review, static deploy on Vercel, specs, ship v1</td><td>7h 45m</td><td>none, skipped to protect the ATO block</td></tr>
+    <tr><td>Wed Oct 14</td><td>4 to 8: PR gate, agent review, static deploy on Vercel, specs, API warm-up, ship v1</td><td>8h 25m</td><td>none, skipped to protect the ATO block</td></tr>
     <tr><td>Thu Oct 15</td><td>9 to 12: determinism, harness, context, memory</td><td>6h 00m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Fri Oct 16</td><td>13 to 15: MCP brief, MCP server, skills</td><td>5h 15m</td><td>2h, vitals-platform repo</td></tr>
     <tr><td>Sat Oct 17</td><td>16 to 18: A2A, patterns, evals</td><td>5h 30m</td><td>none</td></tr>
@@ -177,7 +177,7 @@ footer{color:var(--text-dim);font-size:13px;border-top:1px solid var(--border);m
   </div>
   <p>Verily total before the first possible interview: about 6 hours this week (the Wednesday block is skipped) plus 16 hours on Oct 21 and 22, roughly 22 hours.</p>
 
-  <div class="note"><strong>Where this will bend.</strong> The one day slip used up the buffer. Sunday Oct 18 is now a full ATO day with no light day before the workshop, so the real pressure point is finishing Session 21 and your intro by early evening and sleeping before a 7:30 am doors open. Tuesday is the lightest on hard content, so if anything runs over, it runs over there. Thursday is the heaviest ATO day because Session 10 (the hand built harness, 2 hours) is the most valuable session in the track and should not be split. If a day slips again, the order to protect on the ATO side is 10, 14, 20, then drop 18 and 17 before touching anything else. Verily is the one with a hard date, so do not borrow its 2 hours without deciding to. <strong>Update, Oct 13.</strong> Sessions 4 and 5 moved to Wednesday and the Wednesday Verily block is skipped, so Wednesday is now the heavy day at about 7h 45m. If it runs over, let Session 8 spill into Thursday morning and do not touch Session 10.</div>
+  <div class="note"><strong>Where this will bend.</strong> The one day slip used up the buffer. Sunday Oct 18 is now a full ATO day with no light day before the workshop, so the real pressure point is finishing Session 21 and your intro by early evening and sleeping before a 7:30 am doors open. Tuesday is the lightest on hard content, so if anything runs over, it runs over there. Thursday is the heaviest ATO day because Session 10 (the hand built harness, 2 hours) is the most valuable session in the track and should not be split. If a day slips again, the order to protect on the ATO side is 10, 14, 20, then drop 18 and 17 before touching anything else. Verily is the one with a hard date, so do not borrow its 2 hours without deciding to. <strong>Update, Oct 13.</strong> Sessions 4 and 5 moved to Wednesday and the Wednesday Verily block is skipped, so Wednesday is now the heavy day at about 8h 25m, including a 40 minute API warm-up at the start of Session 8. If it runs over, let Session 8 spill into Thursday morning and do not touch Session 10.</div>
 </section>
 
 <section class="panel" id="p-sessions">
@@ -359,16 +359,17 @@ const SESSIONS = [
  deliv:"docs/PROMPTS.md committed, AGENTS.md updated, and two PRs side by side showing the difference a spec makes.",
  commit:"docs: reusable agent prompt templates"},
 
-{ph:null,id:8,title:"Ship Lite v1 end to end",when:"Wed Oct 14",mins:180,
+{ph:null,id:8,title:"Ship Lite v1 end to end",when:"Wed Oct 14",mins:220,
  goal:"A working, deployed application built entirely through the loop, with the whole history in pull requests.",
  why:"This is the deliverable the vibe coding workshop promises: a working deployed application, a repository documenting every change the agents made, and a repeatable process. You want it done before October 19 so the advanced room is not the first time you have run the loop.",
- steps:["Work in vertical slices. One PR per behavior: load and validate findings, map controls, order by severity, render the markdown brief, render the static page. Each one is run before the next starts.",
+ steps:["API warm-up first, 40 minutes, before any code in the repo. Don Shin's workshop assumes working familiarity with APIs, and Session 10 is a loop of API calls. Make one raw <code>curl</code> request to the model API and read the request and response JSON. Make the same call from Python with the SDK and see what the library hides. Then break it on purpose: a bad key, an oversized request, a missing field. Note the status codes and error shapes. You already know this from the AWS CLI and IAM, which are also API calls with auth and JSON, so look for what is new: the messages shape, the system prompt, tool definitions, stop_reason, token counts, and cost per call.",
+  "Work in vertical slices. One PR per behavior: load and validate findings, map controls, order by severity, render the markdown brief, render the static page. Each one is run before the next starts.",
   "Keep the deterministic parts in plain code from the start: control ID lookup, severity ordering, counts. Do not let the model compute anything that must be exact.",
-  "Add the one LLM call: it writes only the owner facing summary, from facts your code already computed. Keep a template fallback so the tool still runs with no API key. Phase 2 replaces this call with a harness.",
+  "Add the one LLM call, using what the warm-up showed you: it writes only the owner facing summary, from facts your code already computed. Read the API key from an environment variable, never from code. The SDK is a new dependency, so state why in the PR description. Keep a template fallback so the tool still runs with no API key. Phase 2 replaces this call with a harness.",
   "Finish with a README that has sample output, the live URL, and a short architecture note.",
   "Stop when it works. The temptation to keep adding is how these projects die."],
- code:null,
- deliv:"Working CLI plus the live brief page, minimum four merged PRs, README with sample output and architecture note. You have now covered the vibe coding workshop.",
+ code:{t:"bash",v:"# notes/api-warmup.md should record what you saw for each of these\n# 1. raw HTTP, so nothing is hidden\ncurl https://api.anthropic.com/v1/messages \\\n  -H \"x-api-key: $ANTHROPIC_API_KEY\" \\\n  -H \"anthropic-version: 2023-06-01\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"model\": \"$MODEL_ID\", \"max_tokens\": 200,\n       \"messages\": [{\"role\": \"user\", \"content\": \"Say hello in five words.\"}]}'\n\n# 2. same call through the SDK\nuv add anthropic   # new dependency: say why in the PR\n# client.messages.create(model=MODEL_ID, max_tokens=200, messages=[...])\n\n# 3. break it on purpose and note each status code and error body:\n#    wrong key, missing max_tokens, huge input\n# Check the current model id and header values in Anthropic's API docs before you rely on these."},
+ deliv:"notes/api-warmup.md with your raw call, your SDK call and the three errors you triggered. Then the working CLI plus the live brief page, minimum four merged PRs, README with sample output and architecture note. You have now covered the vibe coding workshop.",
  commit:"feat: v1 shipped"},
 
 /* PHASE 2 */
@@ -615,7 +616,7 @@ document.getElementById("themeBtn").onclick = ()=>{
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const DAYS = {
  1:{d:"Tue Oct 13",ato:"3h 30m",v:"Verily 2h",note:"Sessions 1 to 3. Session 4 moved to Wednesday. If you have an hour tonight, do Session 4 now, it is mostly GitHub settings and takes an hour off Wednesday."},
- 4:{d:"Wed Oct 14",ato:"7h 45m",v:null,note:"Sessions 4 to 8. Verily block skipped on purpose to protect this day. Do Session 5 first while fresh. Session 8 is a 3 hour ship block, keep it in one piece."},
+ 4:{d:"Wed Oct 14",ato:"8h 25m",v:null,note:"Sessions 4 to 8, with a 40 minute API warm-up at the start of Session 8. Verily block skipped on purpose to protect this day. Do Session 5 first while fresh. Session 8 is a 3 hour ship block, keep it in one piece."},
  9:{d:"Thu Oct 15",ato:"6h 00m",v:"Verily 2h",note:"Sessions 9 to 12. Heaviest day. Session 10 is the most valuable in the track, do not split it."},
  13:{d:"Fri Oct 16",ato:"5h 15m",v:"Verily 2h",note:"Sessions 13 to 15. MCP day. Session 14 is a 2.5 hour build."},
  16:{d:"Sat Oct 17",ato:"5h 30m",v:null,note:"Sessions 16 to 18. No Verily block. Evals today, the artifact you most want to be able to show."},
