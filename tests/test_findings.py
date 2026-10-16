@@ -68,6 +68,15 @@ def test_malformed_input_is_rejected_with_a_clear_message(tmp_path, data, expect
     assert expected in str(exc.value)
 
 
+def test_non_text_file_is_rejected_not_a_traceback(tmp_path, capsys):
+    path = tmp_path / "binary.json"
+    path.write_bytes(b"\xff\xfe\x00bad")
+    with pytest.raises(FindingsError, match="not valid UTF-8"):
+        load_findings(path)
+    assert main([str(path)]) == 1
+    assert "not valid UTF-8" in capsys.readouterr().err
+
+
 def test_cli_succeeds_on_the_sample(capsys):
     assert main([str(SAMPLE)]) == 0
     assert "Loaded 5 findings" in capsys.readouterr().out

@@ -33,6 +33,8 @@ def load_findings(path: str | Path) -> list[Finding]:
     """
     try:
         raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    except UnicodeDecodeError as exc:
+        raise FindingsError("not a text file: it is not valid UTF-8") from exc
     except json.JSONDecodeError as exc:
         raise FindingsError(
             f"not valid JSON (line {exc.lineno}, column {exc.colno}): {exc.msg}"
