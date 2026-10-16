@@ -1,0 +1,41 @@
+[
+  {
+    "id": "F-001",
+    "title": "S3 bucket allows public read access",
+    "severity": "critical",
+    "resource": "arn:aws:s3:::example-client-invoices",
+    "control_id": "CIS-AWS-3.1.4",
+    "description": "Block Public Access is disabled and the bucket policy grants s3:GetObject to everyone."
+  },
+  {
+    "id": "F-002",
+    "title": "Root account has no multi-factor authentication",
+    "severity": "critical",
+    "resource": "arn:aws:iam::123456789012:root",
+    "control_id": "CIS-AWS-2.5",
+    "description": "The account root user can sign in with a password alone."
+  },
+  {
+    "id": "F-003",
+    "title": "Security group exposes SSH to the internet",
+    "resource": "sg-0abc1234example",
+    "control_id": "CIS-AWS-6.3",
+    "description": "Inbound TCP 22 is open to 0.0.0.0/0 on a security group attached to a production web server."
+  },
+  {
+    "id": "F-004",
+    "title": "CloudTrail is not enabled in all regions",
+    "severity": "medium",
+    "resource": "arn:aws:cloudtrail:us-east-1:123456789012:trail/main",
+    "control_id": "CIS-AWS-4.1",
+    "description": "The trail records only one region, so activity elsewhere would not be logged."
+  },
+  {
+    "id": "F-005",
+    "title": "IAM access key not rotated in over 90 days",
+    "severity": "low",
+    "resource": "arn:aws:iam::123456789012:user/example-deploy",
+    "control_id": "CIS-AWS-2.12",
+    "description": "The access key is 214 days old and has been used recently."
+  }
+]
