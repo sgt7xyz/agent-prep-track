@@ -8,17 +8,17 @@ Every session ends with a deliverable committed to this repo.
 
 The track starts **Tuesday, October 13** (Mon Oct 12 is a reset day).
 
-| Day        | Sessions | Focus                                                                       |
-| ---------- | -------- | --------------------------------------------------------------------------- |
-| Tue Oct 13 | 1–3      | Setup, project spec, baseline                                               |
-| Wed Oct 14 | 4–8      | PR gate, agent review, static deploy on Vercel, specs, API warm-up, ship v1 |
-| Thu Oct 15 | 9–12     | Determinism, hand-built harness (Session 10), context, memory               |
-| Fri Oct 16 | 13–15    | MCP brief, MCP server, skills                                               |
-| Sat Oct 17 | 16–18    | A2A, agent patterns, evals                                                  |
-| Sun Oct 18 | 19–21    | Observability, security, sovereignty; intro, questions, day-of kit          |
-| Mon Oct 19 |          | All Things Open workshop                                                    |
+| Day | Sessions | Focus |
+|---|---|---|
+| Tue Oct 13 | 1–3 | Setup, project spec, baseline |
+| Wed Oct 14 | 4 | The development loop |
+| Fri Oct 16 | 5, 8, 9, 10 | CI, CLI brief with API warm-up, reading, hand-built harness |
+| Sat Oct 17 | 11, 13, 14, 16, 20 | Reading versions, MCP over stdio, security and identity, intro and day-of kit |
+| **Sun Oct 18** | | **Rest day** |
+| Mon Oct 19 | | All Things Open workshop |
+| After the workshop | 6, 7, 12, 15, 17, 18, 19, 21 | Static deploy, specs, memory, skills, patterns, evals, observability, sovereignty |
 
-If a day slips, protect sessions 10, 14 and 20 first; drop 18 and 17 before anything else.
+Protect sessions 10 and 20 above all. Nothing is scheduled on Sunday.
 
 ## Through-line project: Posture Brief Lite
 
