@@ -5,14 +5,20 @@ from __future__ import annotations
 import argparse
 import sys
 
-from posture_brief.brief import render_brief, template_summary
+from posture_brief.brief import render_brief
 from posture_brief.controls import UnknownControlError, lookup_control
 from posture_brief.findings import FindingsError, load_findings
+from posture_brief.summary import get_summary
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="posture-brief", description=__doc__)
     parser.add_argument("findings_file", help="path to a findings JSON file")
+    parser.add_argument(
+        "--template-only",
+        action="store_true",
+        help="skip the model and use the template summary",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -38,8 +44,11 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  {problem}", file=sys.stderr)
         return 1
 
-    # The summary is the template for now, so no API key is needed.
-    summary = template_summary(findings)
+    # The summary comes from the model when a key is set, else from the template.
+    # The note explains a fallback. It goes to stderr so the brief stays clean.
+    summary, note = get_summary(findings, use_model=not args.template_only)
+    if note:
+        print(f"note: {note}", file=sys.stderr)
     print(render_brief(findings, summary))
     return 0
 
