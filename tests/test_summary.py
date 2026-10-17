@@ -65,7 +65,7 @@ def test_the_call_sends_the_rules_and_the_facts():
     call = client.messages.calls[0]
     assert call["system"] == SYSTEM_PROMPT
     assert "<findings>" in call["messages"][0]["content"]
-    assert call["max_tokens"] == 400
+    assert call["max_tokens"] == 1000
 
 
 def test_instructions_inside_finding_text_stay_inside_the_data_block():

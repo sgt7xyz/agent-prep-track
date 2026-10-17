@@ -18,7 +18,7 @@ from posture_brief.findings import SEVERITIES, Finding
 from posture_brief.ordering import count_by_severity, order_findings
 
 MODEL = "claude-haiku-5-5"
-MAX_TOKENS = 400
+MAX_TOKENS = 1000
 
 # The rules for the model. Finding text is data, so the prompt says so.
 SYSTEM_PROMPT = (
