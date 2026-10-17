@@ -3,7 +3,9 @@ name = "posture-brief"
 version = "0.1.0"
 description = "Turn cloud misconfiguration findings into a plain English remediation brief."
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "anthropic>=1.15.0",
+]
 
 [project.scripts]
 posture-brief = "posture_brief.cli:main"
