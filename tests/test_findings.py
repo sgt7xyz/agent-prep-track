@@ -79,7 +79,7 @@ def test_non_text_file_is_rejected_not_a_traceback(tmp_path, capsys):
 
 def test_cli_succeeds_on_the_sample(capsys):
     assert main([str(SAMPLE)]) == 0
-    assert "Loaded 5 findings" in capsys.readouterr().out
+    assert "# Cloud Security Brief" in capsys.readouterr().out
 
 
 def test_cli_fails_with_exit_1_and_names_the_problem(capsys):

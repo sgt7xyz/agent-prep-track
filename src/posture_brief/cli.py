@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import sys
 
+from posture_brief.brief import render_brief, template_summary
 from posture_brief.controls import UnknownControlError, lookup_control
 from posture_brief.findings import FindingsError, load_findings
 
@@ -37,7 +38,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  {problem}", file=sys.stderr)
         return 1
 
-    print(f"Loaded {len(findings)} findings from {args.findings_file}")
+    # The summary is the template for now, so no API key is needed.
+    summary = template_summary(findings)
+    print(render_brief(findings, summary))
     return 0
 
 
