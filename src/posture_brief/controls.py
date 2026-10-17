@@ -15,6 +15,16 @@ ASSESSMENTS = ("automated", "manual")
 EFFORTS = ("low", "medium", "high")
 
 
+# Plain English names for the NIST 800-53 families used in the table, so the
+# brief can say "Access Control (AC)" instead of just "AC".
+NIST_FAMILY_NAMES = {
+    "AC": "Access Control",
+    "AU": "Audit and Accountability",
+    "IA": "Identification and Authentication",
+    "SC": "System and Communications Protection",
+}
+
+
 class UnknownControlError(ValueError):
     """A finding names a control id that is not in the lookup table."""
 
